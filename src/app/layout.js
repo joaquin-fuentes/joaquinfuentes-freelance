@@ -12,8 +12,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Joaquin Fuentes - Freelance",
-  description: "Joaquin Fuentes - Freelance",
+  title: "Joaquín Fuentes - Desarrollador Web Freelance",
+  description:
+    "Desarrollador web fullstack freelance en Tucumán. Creo sitios web profesionales, modernos, responsivos y optimizados para tu negocio.",
 };
 
 export default function RootLayout({ children }) {
