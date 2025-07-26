@@ -85,15 +85,21 @@ export default function Servicios() {
               >
                 {servicio.icon}
               </div>
-              <h3 className="text-white text-lg font-semibold mb-1">
-                {servicio.title}
-              </h3>
-              <p className="text-gray-400 text-sm mb-3">
-                {servicio.description}
-              </p>
-              <p className={`text-lg font-bold ${servicio.priceColor}`}>
-                {servicio.price}
-              </p>
+              <div className="p-6 flex flex-col justify-between min-h-[120px]">
+                <div>
+                  <h3 className="text-white text-lg font-semibold mb-1">
+                    {servicio.title}
+                  </h3>
+                  <p className="text-gray-400 text-sm mb-3">
+                    {servicio.description}
+                  </p>
+                </div>
+                <p
+                  className={`text-lg font-bold ${servicio.priceColor} mt-auto`}
+                >
+                  {servicio.price}
+                </p>
+              </div>
             </div>
           ))}
         </div>
