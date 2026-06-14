@@ -1,119 +1,127 @@
 "use client";
 
-import { Monitor, Globe, ShoppingCart, Code } from "lucide-react";
-import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { BarChart3, Bot, Globe, Workflow } from "lucide-react";
+import {
+  ScrollReveal,
+  StaggerContainer,
+  StaggerItem,
+} from "@/components/ui/ScrollReveal";
+
+const servicios = [
+  {
+    icon: Globe,
+    title: "Sitios y aplicaciones web a medida",
+    description:
+      "Páginas y plataformas rápidas, responsivas y pensadas para convertir visitas en clientes. Desde landing pages hasta sistemas web completos.",
+    ideal:
+      "Negocios sin presencia online o con una web desactualizada que no genera resultados.",
+    cta: "Ver proyectos",
+    href: "#proyectos",
+    accent: "teal",
+  },
+  {
+    icon: Workflow,
+    title: "Automatizá las tareas repetitivas",
+    description:
+      "Conecto tus herramientas (WhatsApp, mail, planillas, redes sociales, sistemas de gestión) para que las tareas manuales se hagan solas. Menos errores, más tiempo libre.",
+    ideal: "Negocios que pierden horas por semana en tareas administrativas.",
+    cta: "Quiero automatizar mi negocio",
+    href: "#contacto",
+    accent: "orange",
+  },
+  {
+    icon: BarChart3,
+    title: "Entendé los números de tu negocio",
+    description:
+      "Convierto tus datos de ventas, clientes y operaciones en reportes y dashboards claros, para que tomes decisiones con información real, no a ojo.",
+    ideal: "Negocios que quieren saber qué les funciona, qué no, y por qué.",
+    cta: "Quiero ver mis datos claros",
+    href: "#contacto",
+    accent: "teal",
+  },
+  {
+    icon: Bot,
+    title: "Sistemas a medida y asistentes con IA",
+    description:
+      "Gestores de stock, CRMs simples, asistentes con inteligencia artificial para atención al cliente y más — herramientas hechas para tu forma de trabajar, no al revés.",
+    ideal:
+      "Negocios con necesidades puntuales que ningún software genérico resuelve bien.",
+    cta: "Contame tu caso",
+    href: "#contacto",
+    accent: "orange",
+  },
+];
+
+const accentStyles = {
+  teal: {
+    icon: "bg-teal/15 text-teal",
+    link: "text-teal hover:text-teal/80",
+    glow: "hover:glow-teal",
+  },
+  orange: {
+    icon: "bg-orange/15 text-orange",
+    link: "text-orange hover:text-orange/80",
+    glow: "hover:glow-orange",
+  },
+};
 
 export default function Servicios() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 100);
-    return () => clearTimeout(timer);
-  }, []);
-
-  const servicios = [
-    {
-      icon: <Monitor className="w-6 h-6" />,
-      title: "Landing Page",
-      description: "Página de aterrizaje optimizada para conversiones",
-      price: "desde $100 USD",
-      priceColor: "text-pink-500",
-      bgIcon: "bg-pink-500",
-      shadowColor: "hover:shadow-[0_0_30px_rgba(236,72,153,0.4)]", // pink
-      hoverBorder: "hover:border-pink-500",
-    },
-    {
-      icon: <Globe className="w-6 h-6" />,
-      title: "Sitio Institucional",
-      description: "Web corporativa completa con múltiples secciones",
-      price: "desde $200 USD",
-      priceColor: "text-sky-500",
-      bgIcon: "bg-sky-500",
-      shadowColor: "hover:shadow-[0_0_30px_rgba(56,189,248,0.4)]", // sky
-      hoverBorder: "hover:border-sky-500",
-    },
-    {
-      icon: <ShoppingCart className="w-6 h-6" />,
-      title: "Tienda Online",
-      description: "E-commerce completo con carrito y pagos",
-      price: "desde $400 USD",
-      priceColor: "text-green-500",
-      bgIcon: "bg-green-500",
-      shadowColor: "hover:shadow-[0_0_30px_rgba(34,197,94,0.4)]", // green
-      hoverBorder: "hover:border-green-500",
-    },
-    {
-      icon: <Code className="w-6 h-6" />,
-      title: "Web App Personalizada",
-      description: "Sistema a medida según tus necesidades",
-      price: "desde $800 USD",
-      priceColor: "text-orange-500",
-      bgIcon: "bg-orange-500",
-      shadowColor: "hover:shadow-[0_0_30px_rgba(249,115,22,0.4)]", // orange
-      hoverBorder: "hover:border-orange-500",
-    },
-  ];
-
   return (
-    <section className="py-20 bg-gradient-to-b from-slate-900 to-slate-800 flex justify-center">
-      <div className="container px-4 md:px-6">
-        <div
-          className={`text-center mb-16 transition-all duration-1000 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}
-        >
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-            Servicios que transforman tu{" "}
-            <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-              presencia digital
-            </span>
-          </h2>
-          <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
-            Soluciones web profesionales adaptadas a tus necesidades y
-            presupuesto
-          </p>
-        </div>
+    <section id="servicios" className="py-20 bg-night relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(45,212,191,0.08),transparent_60%)]" />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {servicios.map((servicio, index) => (
-            <div
-              key={index}
-              className={`bg-slate-800/50 border border-slate-700 rounded-xl text-center p-6 transition-all duration-300 hover:scale-105 shadow-md ${servicio.shadowColor} ${servicio.hoverBorder}`}
-            >
-              <div
-                className={`w-14 h-14 mx-auto mb-4 flex items-center justify-center text-white rounded-full ${servicio.bgIcon}`}
-              >
-                {servicio.icon}
-              </div>
-              <div className="p-6 flex flex-col justify-between min-h-[120px]">
-                <div>
-                  <h3 className="text-white text-lg font-semibold mb-1">
+      <div className="container px-4 md:px-6 relative">
+        <ScrollReveal className="text-center mb-16">
+          <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl md:text-4xl font-bold text-white mb-4">
+            Qué puedo hacer por tu negocio
+          </h2>
+          <p className="text-lg text-muted max-w-2xl mx-auto">
+            Servicios pensados para negocios que quieren crecer sin complicarse
+            con tecnología.
+          </p>
+        </ScrollReveal>
+
+        <StaggerContainer className="grid md:grid-cols-2 gap-6" stagger={0.15}>
+          {servicios.map((servicio, index) => {
+            const Icon = servicio.icon;
+            const styles = accentStyles[servicio.accent];
+
+            return (
+              <StaggerItem key={index}>
+                <motion.div
+                  className={`glass-card rounded-2xl p-6 md:p-8 h-full transition-shadow duration-300 ${styles.glow}`}
+                  whileHover={{ y: -6, scale: 1.01 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <motion.div
+                    className={`w-12 h-12 rounded-xl flex items-center justify-center mb-5 ${styles.icon}`}
+                    whileHover={{ rotate: [0, -10, 10, 0] }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <Icon className="w-6 h-6" />
+                  </motion.div>
+                  <h3 className="text-white text-xl font-semibold mb-3">
                     {servicio.title}
                   </h3>
-                  <p className="text-gray-400 text-sm mb-3">
+                  <p className="text-muted text-sm leading-relaxed mb-4">
                     {servicio.description}
                   </p>
-                </div>
-                <p
-                  className={`text-lg font-bold ${servicio.priceColor} mt-auto`}
-                >
-                  {servicio.price}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div
-          className={`text-center transition-opacity duration-1000 delay-200 ${
-            isVisible ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <div className="inline-block px-6 py-3 bg-green-500 text-white rounded-md font-semibold text-base shadow-lg animate-pulse">
-            😎 Descuento del 50% por ser de los primeros clientes en esta nueva
-            etapa
-          </div>
-        </div>
+                  <p className="text-white/70 text-sm mb-5">
+                    <span className="text-teal font-medium">Ideal para:</span>{" "}
+                    {servicio.ideal}
+                  </p>
+                  <a
+                    href={servicio.href}
+                    className={`text-sm font-semibold ${styles.link} transition-colors`}
+                  >
+                    {servicio.cta} →
+                  </a>
+                </motion.div>
+              </StaggerItem>
+            );
+          })}
+        </StaggerContainer>
       </div>
     </section>
   );

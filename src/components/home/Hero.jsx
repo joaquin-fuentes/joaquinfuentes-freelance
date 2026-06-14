@@ -1,68 +1,168 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Link from "next/link";
-import { MessageCircle } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowRight, BarChart3, ChevronDown, Globe, Workflow } from "lucide-react";
+import AnimatedOrbs from "@/components/ui/AnimatedOrbs";
+
+const pillars = [
+  {
+    icon: Globe,
+    title: "Sitio web",
+    desc: "Presencia online que convierte",
+    color: "teal",
+    delay: 0,
+    offset: "",
+  },
+  {
+    icon: Workflow,
+    title: "Automatización",
+    desc: "Tareas que se hacen solas",
+    color: "orange",
+    delay: 0.15,
+    offset: "md:ml-8",
+  },
+  {
+    icon: BarChart3,
+    title: "Datos",
+    desc: "Decisiones con información real",
+    color: "teal",
+    delay: 0.3,
+    offset: "",
+  },
+];
+
+const container = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.2 } },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 
 export default function Hero() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-      {/* Fondo animado */}
-      <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 via-blue-600/20 to-cyan-600/20 animate-pulse"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-night pt-16">
+      <AnimatedOrbs />
 
-      <div className="container px-4 md:px-6 relative z-10">
-        <div
-          className={`text-center space-y-8 transition-all duration-1000 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}
-        >
-          <div className="space-y-4">
-            {/* Badge integrado */}
-            <span className="inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-purple-500 to-cyan-500 border-0 shadow-md">
-              ✨ Desarrollador Web Freelance
-            </span>
-
-            {/* Título principal */}
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-white via-purple-200 to-cyan-200 bg-clip-text text-transparent leading-tight">
-              Creá tu sitio web profesional con <br />
-              <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-                Joaquín Fuentes
-              </span>
-            </h1>
-
-            {/* Subtítulo */}
-            <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-              Diseño y desarrollo web a medida, con enfoque moderno, SEO,
-              responsive y soporte completo.
-            </p>
-          </div>
-
-          {/* Botón y texto de respuesta */}
-          <div className="flex flex-col gap-4 justify-center items-center">
-            <Link
-              href="https://wa.me/5493816097754"
-              target="_blank"
-              className="cursor-pointer"
+      <div className="container px-4 md:px-6 relative z-10 py-16 md:py-24">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <motion.div
+            className="space-y-8"
+            variants={container}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.span
+              variants={item}
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-teal/30 bg-teal/10 text-teal text-sm font-medium tracking-wide"
             >
-              <button className=" cursor-pointer inline-flex items-center justify-center bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-700 hover:to-cyan-700 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-105">
-                <MessageCircle className="mr-2 h-5 w-5" />
-                Cotizá tu sitio ahora
-              </button>
-            </Link>
+              <span className="w-2 h-2 rounded-full bg-teal animate-pulse" />
+              Desarrollo Web · Automatización · Datos para Pymes
+            </motion.span>
+
+            <motion.h1
+              variants={item}
+              className="font-[family-name:var(--font-space-grotesk)] text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1]"
+            >
+              Tu negocio puede vender más y trabajar menos.{" "}
+              <span className="gradient-text-animated">Te muestro cómo.</span>
+            </motion.h1>
+
+            <motion.p
+              variants={item}
+              className="text-lg md:text-xl text-muted leading-relaxed max-w-xl"
+            >
+              Soy Joaquín Fuentes, desarrollador full stack. Diseño sitios web
+              que convierten, automatizo tareas repetitivas y te ayudo a
+              entender los números de tu negocio — todo en un mismo lugar, con
+              un solo interlocutor.
+            </motion.p>
+
+            <motion.div
+              variants={item}
+              className="flex flex-col sm:flex-row gap-4"
+            >
+              <motion.a
+                href="#contacto"
+                className="inline-flex items-center justify-center bg-orange text-white font-semibold px-7 py-3.5 rounded-lg animate-pulse-glow"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Quiero una consultoría gratuita
+              </motion.a>
+              <motion.a
+                href="#proceso"
+                className="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-teal/50 text-white font-medium px-7 py-3.5 rounded-lg transition-colors"
+                whileHover={{ scale: 1.03, borderColor: "rgba(45,212,191,0.5)" }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Ver cómo trabajo
+                <ArrowRight className="w-4 h-4" />
+              </motion.a>
+            </motion.div>
+          </motion.div>
+
+          <div className="grid gap-4">
+            {pillars.map((pillar, i) => {
+              const Icon = pillar.icon;
+              const floatClass =
+                i === 0
+                  ? "animate-float"
+                  : i === 1
+                    ? "animate-float-delayed"
+                    : "animate-float-slow";
+
+              return (
+                <motion.div
+                  key={pillar.title}
+                  initial={{ opacity: 0, x: 60 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{
+                    duration: 0.8,
+                    delay: 0.4 + pillar.delay,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  whileHover={{
+                    scale: 1.02,
+                    borderColor: "rgba(45,212,191,0.4)",
+                  }}
+                  className={`flex items-center gap-4 glass-card rounded-xl p-5 ${pillar.offset} ${floatClass} glow-teal`}
+                >
+                  <div
+                    className={`w-12 h-12 rounded-lg flex items-center justify-center shrink-0 ${
+                      pillar.color === "teal"
+                        ? "bg-teal/20 text-teal"
+                        : "bg-orange/20 text-orange"
+                    }`}
+                  >
+                    <Icon className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <p className="text-white font-semibold">{pillar.title}</p>
+                    <p className="text-muted text-sm">{pillar.desc}</p>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </div>
 
-      {/* Efectos flotantes */}
-      <div className="absolute top-20 left-10 w-20 h-20 bg-purple-500/20 rounded-full blur-xl animate-bounce"></div>
-      <div className="absolute bottom-20 right-10 w-32 h-32 bg-cyan-500/20 rounded-full blur-xl animate-pulse"></div>
+      <motion.a
+        href="#servicios"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-muted hover:text-teal transition-colors"
+        animate={{ y: [0, 8, 0] }}
+        transition={{ duration: 2, repeat: Infinity }}
+        aria-label="Scroll hacia abajo"
+      >
+        <ChevronDown className="w-6 h-6" />
+      </motion.a>
     </section>
   );
 }
