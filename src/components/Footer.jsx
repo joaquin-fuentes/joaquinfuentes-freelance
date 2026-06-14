@@ -1,4 +1,5 @@
 import { Github, Linkedin, Mail } from "lucide-react";
+import Logo from "@/components/Logo";
 import { EMAIL, GITHUB_URL, LINKEDIN_URL, NAV_LINKS } from "@/lib/constants";
 
 export default function Footer() {
@@ -9,9 +10,12 @@ export default function Footer() {
       <div className="container px-4 md:px-6">
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
-            <p className="font-[family-name:var(--font-space-grotesk)] font-bold text-white text-lg mb-2">
-              Joaquín Fuentes
-            </p>
+            <div className="flex items-center gap-2.5 mb-2">
+              <Logo size={28} />
+              <p className="font-[family-name:var(--font-space-grotesk)] font-bold text-white text-lg">
+                Joaquín Fuentes
+              </p>
+            </div>
             <p className="text-muted text-sm">
               Soluciones digitales para pequeños negocios
             </p>

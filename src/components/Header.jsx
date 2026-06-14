@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import Logo from "@/components/Logo";
 import { NAV_LINKS } from "@/lib/constants";
 
 export default function Header() {
@@ -31,8 +32,12 @@ export default function Header() {
         <div className="flex items-center justify-between h-16 md:h-18">
           <Link
             href="#"
-            className="font-[family-name:var(--font-space-grotesk)] font-bold text-white text-lg tracking-tight"
+            className="flex items-center gap-2.5 font-[family-name:var(--font-space-grotesk)] font-bold text-white text-lg tracking-tight group"
           >
+            <Logo
+              size={34}
+              className="shrink-0 transition-transform duration-300 group-hover:scale-105"
+            />
             Joaquín Fuentes
           </Link>
 
